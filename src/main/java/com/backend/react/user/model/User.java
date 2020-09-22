@@ -1,4 +1,4 @@
-package com.backend.react.model;
+package com.backend.react.user.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,19 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "ws")
+@Table(name = "user")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class WsModel {
+public class User {
 
 
     @Id
@@ -29,6 +25,19 @@ public class WsModel {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "repeat_password")
+    private String repeatPassword;
+
+    @Column(name = "display_name")
+    private String displayName;
+
+    @Column(name = "aggre")
+    private Boolean aggre;
+
 }
