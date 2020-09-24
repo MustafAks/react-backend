@@ -1,5 +1,6 @@
 package com.backend.react.user.controller;
 
+import com.backend.react.common.web.ApiResponse;
 import com.backend.react.user.model.User;
 import com.backend.react.user.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/")
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public ApiResponse<User> createUser(@RequestBody User user) {
+        return ApiResponse.response(userService.createUser(user));
 
     }
 
