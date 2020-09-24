@@ -17,9 +17,9 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public ResponseEntity handleChallengeExceptionHandler(BaseException ex) {
         ApiResponse response = new ApiResponse();
-        ErrorResponse error = new ErrorResponse(ex.getMessage(), ex.getStatusCode());
+        ErrorResponse error = new ErrorResponse(ex.getMessage(), ex.getExceptionEnum());
         response.setError(error);
-        return new ResponseEntity<Object>(response, ex.getStatusCode());
+        return new ResponseEntity<Object>(response, ex.getExceptionEnum().getHttpStatus());
     }
 
     @ExceptionHandler(Exception.class)
