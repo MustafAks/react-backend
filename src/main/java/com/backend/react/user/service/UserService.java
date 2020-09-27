@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceImp {
 
     private UserRepository userRepository;
 
@@ -25,20 +25,36 @@ public class UserService {
 
     @Transactional
     public User createUser(User user) {
-        if (user.getUsername() == null) {
-            ExceptionFactory.throwException("username", ExceptionEnum.BAD_REQUEST_MANDATORY);
+        validUser(user);
+        String encrypt = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encrypt);
+        return userRepository.save(user);
+    }
+
+
+    public Boolean loginUser(User user) {
+        return true;
+    }
+
+    private void validUser(User user) {
+        if (user.getUserName() == null) {
+            ExceptionFactory.throwException("userName", ExceptionEnum.BAD_REQUEST_MANDATORY);
         }
         if (user.getPassword() == null) {
             ExceptionFactory.throwException("password", ExceptionEnum.BAD_REQUEST_MANDATORY);
         }
         if (user.getRepeatPassword() == null) {
-            ExceptionFactory.throwException("repeatpassword", ExceptionEnum.BAD_REQUEST_MANDATORY);
+            ExceptionFactory.throwException("repeatPassword", ExceptionEnum.BAD_REQUEST_MANDATORY);
         }
         if (user.getDisplayName() == null) {
-            ExceptionFactory.throwException("displayname", ExceptionEnum.BAD_REQUEST_MANDATORY);
+            ExceptionFactory.throwException("displayName", ExceptionEnum.BAD_REQUEST_MANDATORY);
         }
-        String encrypt = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encrypt);
-        return userRepository.save(user);
+
+        User isUnique = userRepository.findByUserName(user.getUserName());
+        if (isUnique != null) {
+            ExceptionFactory.throwException("userName", ExceptionEnum.ALREADY_ADDED_FAILURE);
+        }
+
     }
+
 }

@@ -22,7 +22,11 @@ public class UserController {
     @PostMapping(value = "/")
     public ApiResponse<User> createUser(@RequestBody User user) {
         return ApiResponse.response(userService.createUser(user));
+    }
 
+    @PostMapping(value = "/login")
+    public ApiResponse<Boolean> loginUser(@RequestBody User user) {
+        return ApiResponse.response(userService.loginUser(user));
     }
 
 

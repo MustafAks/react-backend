@@ -25,11 +25,12 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
+
 
     @Column(name = "repeat_password")
     private String repeatPassword;

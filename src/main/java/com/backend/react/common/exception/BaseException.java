@@ -1,6 +1,11 @@
 package com.backend.react.common.exception;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class BaseException extends RuntimeException {
 
     private ExceptionEnum exceptionEnum;
@@ -12,20 +17,5 @@ public class BaseException extends RuntimeException {
         this.exceptionEnum = exceptionEnum;
     }
 
-    public ExceptionEnum getExceptionEnum() {
-        return exceptionEnum;
-    }
 
-    public void setExceptionEnum(ExceptionEnum exceptionEnum) {
-        this.exceptionEnum = exceptionEnum;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
