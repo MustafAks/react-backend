@@ -1,8 +1,10 @@
 package com.backend.react.common.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 
+@Getter
 public enum ExceptionEnum {
 
 
@@ -33,7 +35,9 @@ public enum ExceptionEnum {
     FILE_UPLOAD_LIMIT_FAILURE("TS-000-0009", HttpStatus.BAD_REQUEST),
 
 
-    LOGIC_ERROR("TS-000-0010", HttpStatus.BAD_REQUEST);
+    LOGIC_ERROR("TS-000-0010", HttpStatus.BAD_REQUEST),
+
+    UN_AUTHORIZED("TS-000-0011", HttpStatus.BAD_REQUEST);
 
     private String code;
     private HttpStatus httpStatus;
@@ -41,16 +45,6 @@ public enum ExceptionEnum {
     ExceptionEnum(String code, HttpStatus httpStatus) {
         this.code = code;
         this.httpStatus = httpStatus;
-    }
-
-
-    public String getCode() {
-        return code;
-    }
-
-
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
     }
 
 }

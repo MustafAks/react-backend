@@ -4,7 +4,6 @@ import com.backend.react.common.web.ApiResponse;
 import com.backend.react.user.model.User;
 import com.backend.react.user.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +19,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/")
-    public ApiResponse<User> createUser(@RequestBody User user) {
+    public ApiResponse<User> createUser(User user) {
         return ApiResponse.response(userService.createUser(user));
-    }
-
-    @PostMapping(value = "/login")
-    public ApiResponse<Boolean> loginUser(@RequestBody User user) {
-        return ApiResponse.response(userService.loginUser(user));
     }
 
 

@@ -4,7 +4,6 @@ import com.backend.react.common.exception.ExceptionEnum;
 import com.backend.react.common.exception.ExceptionFactory;
 import com.backend.react.user.model.User;
 import com.backend.react.user.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +17,9 @@ public class UserService implements UserServiceImp {
     private PasswordEncoder passwordEncoder;
 
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -31,10 +30,6 @@ public class UserService implements UserServiceImp {
         return userRepository.save(user);
     }
 
-
-    public Boolean loginUser(User user) {
-        return true;
-    }
 
     private void validUser(User user) {
         if (user.getUserName() == null) {

@@ -3,7 +3,7 @@ package com.backend.react.common.exception;
 
 public class ExceptionFactory {
 
-    private ExceptionFactory() {
+    public ExceptionFactory(String unAuthorized, ExceptionEnum authorized) {
     }
 
     public static void throwException(String message, ExceptionEnum exceptionEnum) {

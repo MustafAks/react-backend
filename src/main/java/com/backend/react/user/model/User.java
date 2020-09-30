@@ -41,4 +41,15 @@ public class User {
     @Column(name = "aggre")
     private Boolean aggre;
 
+    @Column(name = "image")
+    private String image;
+
+
+    public User(String userName, String password, String repeatPassword, String displayName, Boolean aggre) {
+        this.userName = userName;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
+        this.displayName = displayName;
+        this.aggre = aggre;
+    }
 }

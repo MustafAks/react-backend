@@ -6,6 +6,5 @@ public interface UserServiceImp {
 
     User createUser(User user);
 
-    Boolean loginUser(User user);
 
 }
